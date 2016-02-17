@@ -1,0 +1,3 @@
+[submodule "github.com/willings/proxypool"]
+	path = github.com/willings/proxypool
+	url = https://github.com/willings/proxypool.git
