@@ -1,0 +1,12 @@
+language: go
+
+before_install:
+  - go get github.com/axw/gocov/gocov
+  - go get github.com/mattn/goveralls
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/willings/proxypool/provider
+  - go get google.golang.org/appengine
+
+install:
+
+script:
