@@ -36,6 +36,9 @@ func handle_cached_json(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	providers := r.URL.Query().Get(QUERY_PROVIDERS)
+	if providers == "" {
+		providers = "all"
+	}
 
 	ctx := appengine.NewContext(r)
 	key := datastore.NewKey(ctx, QUERY_PROVIDERS, providers, 0, nil)
@@ -60,12 +63,15 @@ func handle_refresh_json(w http.ResponseWriter, r *http.Request) {
 	}
 
 	providers := r.URL.Query().Get(QUERY_PROVIDERS)
+	if providers == "" {
+		providers = "all"
+	}
 	providerArr := strings.Split(providers, "|")
 
 	loaders := make([]provider.ProxyProvider, 0)
 
 	for _, name := range providerArr {
-		if name == "all" || name == "" {
+		if name == "all" {
 			loaders = provider.CreateAllProvider()
 			break
 		} else {
