@@ -8,5 +8,10 @@ before_install:
   - go get google.golang.org/appengine
 
 install:
+  - export FILE=$(curl https://storage.googleapis.com/appengine-sdks/ | grep -o 'featured/go_appengine_sdk_linux_amd64-[^\<]*' | head -1)
+  - curl -O https://storage.googleapis.com/appengine-sdks/featured/$FILE
+  - unzip -q $FILE
 
 script:
+  - ./go_appengine/goapp build ./
+  - ./go_appengine/goapp test ./
