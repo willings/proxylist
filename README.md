@@ -4,7 +4,7 @@
 
 A HTTP Proxy list updating service for Google App Engine.
 
-DEMO
+DEMO (Updated per Hour)
 ------------
 
 http://free-proxy-list.appspot.com/proxy.json
