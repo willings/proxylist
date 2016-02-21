@@ -92,7 +92,11 @@ func handle_refresh_json(w http.ResponseWriter, r *http.Request) {
 
 	p := provider.CreateMultiLoader(loaders...)
 	p.SetClient(client)
-	items, _ := p.Load()
+	items, err := p.Load()
+
+	if err != nil {
+		fmt.Fprint(w, err.Error())
+	}
 
 	cache := &ProxyList{
 		Timestamp: time.Now(),

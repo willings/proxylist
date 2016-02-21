@@ -31,3 +31,10 @@ func errJson(w http.ResponseWriter, errCode int) {
 	err := &jsonError{ErrCode: errCode, ErrMessage: ""}
 	fmt.Fprint(w, err.toJson())
 }
+
+func formatError(w http.ResponseWriter, err error) {
+	w.WriteHeader(500)
+	w.Header().Set("Content-Type", "application/json")
+	e := &jsonError{ErrCode:0, ErrMessage: err.Error()}
+	fmt.Fprint(w, e.toJson())
+}
