@@ -47,7 +47,6 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	updateTime := cache.Timestamp.Format("Mon Jan 2 15:04:05 -0700 MST 2006")
 
 	tblBuf := &bytes.Buffer{}
-	tblBuf.Write([]byte("<table><tr><td>IP</td><td>Host</td><td>Type</td><td>Anonymous</td></tr>"))
 	for _, proxy := range cache.Proxies {
 		var proxyType string
 		switch proxy.Type {
@@ -69,7 +68,6 @@ func handle(w http.ResponseWriter, r *http.Request) {
 			proxy.Host, proxy.Port, proxyType, anoymousType)
 		tblBuf.Write([]byte(tr))
 	}
-	tblBuf.Write([]byte("</table>"))
 
 	buf := &bytes.Buffer{}
 	buf.ReadFrom(file)
